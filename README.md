@@ -1,4 +1,3 @@
-# Raffle
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -28,20 +27,46 @@
     const exchangeBtn = document.getElementById('exchangeBtn');
     const closeContainer = document.getElementById('closeContainer');
 
+    // Cookieを設定する関数（有効期限1日）
+    function setCookie(name, value, days = 1) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      document.cookie = `${name}=${encodeURIComponent(value)};expires=${date.toUTCString()};path=/`;
+    }
+
+    // Cookieを取得する関数
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? decodeURIComponent(match[2]) : null;
+    }
+
     // 初期抽選
     window.addEventListener('DOMContentLoaded', () => {
-      const rand = Math.random() * 1000;  // 0以上100未満の乱数を生成
-      randDiv.textContent = `乱数: ${rand.toFixed(2)}`;  // 小数点2位まで表示
+      const storedResult = getCookie('lottery_result');
+      const storedRand = getCookie('lottery_rand');
 
-      let prize;
-      if (rand < 10) {
-        prize = "🎉 1等！おめでとう！";
-      } else if (rand < 40) {
-        prize = "✨ 2等！すばらしい！";
+      if (storedResult && storedRand) {
+        // すでに抽選済みの場合、cookieの内容を表示
+        resultDiv.textContent = storedResult;
+        randDiv.textContent = `乱数: ${parseFloat(storedRand).toFixed(2)}`;
       } else {
-        prize = "🎁 3等！感謝の気持ちを込めて！";
+        const rand = Math.random() * 1000;
+        randDiv.textContent = `乱数: ${rand.toFixed(2)}`;
+
+        let prize;
+        if (rand < 10) {
+          prize = "🎉 1等！おめでとう！";
+        } else if (rand < 40) {
+          prize = "✨ 2等！すばらしい！";
+        } else {
+          prize = "🎁 3等！感謝の気持ちを込めて！";
+        }
+
+        resultDiv.textContent = prize;
+        // cookieに保存
+        setCookie('lottery_result', prize);
+        setCookie('lottery_rand', rand);
       }
-      resultDiv.textContent = prize;
     });
 
     // 交換処理と閉じるボタン表示
