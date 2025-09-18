@@ -3,12 +3,41 @@
   <meta charset="UTF-8">
   <title>抽選＆交換サイト（乱数表示付き）</title>
   <style>
-    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f8ff; margin: 0; font-family: Arial, sans-serif; }
-    .container { text-align: center; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .title { font-size: 2rem; margin-bottom: 1rem; }
-    .result { font-size: 2rem; color: #0077cc; margin: 1rem 0; }
-    .rand { font-size: 1rem; color: #555; }
-    .btn { font-size: 1rem; padding: 0.5rem 1rem; margin-top: 1rem; cursor: pointer; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f8ff;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .result {
+      font-size: 2rem;
+      color: #0077cc;
+      margin: 1rem 0;
+    }
+    .rand {
+      font-size: 1rem;
+      color: #555;
+    }
+    .btn {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -39,16 +68,39 @@
       return match ? decodeURIComponent(match[2]) : null;
     }
 
-    // 初期抽選
+    // 「サイトを閉じる」ボタンを作成する関数
+    function createCloseButton() {
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = '3秒後に自動で閉じます（またはクリック）';
+      closeBtn.className = 'btn';
+      closeBtn.onclick = () => {
+        window.location.href = 'http://abehiroshi.la.coocan.jp'; // 任意のリダイレクト先
+      };
+      closeContainer.appendChild(closeBtn);
+
+      setTimeout(() => {
+        window.location.href = 'http://abehiroshi.la.coocan.jp';
+      }, 3000);
+    }
+
+    // 初期処理
     window.addEventListener('DOMContentLoaded', () => {
       const storedResult = getCookie('lottery_result');
       const storedRand = getCookie('lottery_rand');
+      const exchanged = getCookie('exchanged');
 
+      // 抽選結果がすでに存在する場合
       if (storedResult && storedRand) {
-        // すでに抽選済みの場合、cookieの内容を表示
         resultDiv.textContent = storedResult;
         randDiv.textContent = `乱数: ${parseFloat(storedRand).toFixed(2)}`;
+
+        if (exchanged === 'true') {
+          resultDiv.textContent = "✅ 景品を交換しました！";
+          exchangeBtn.disabled = true;
+          createCloseButton();
+        }
       } else {
+        // 新規抽選処理
         const rand = Math.random() * 1000;
         randDiv.textContent = `乱数: ${rand.toFixed(2)}`;
 
@@ -57,34 +109,25 @@
           prize = "🎉 1等！おめでとう！";
         } else if (rand < 40) {
           prize = "✨ 2等！すばらしい！";
-        } else {
+        } else if (rand < 80) {
           prize = "🎁 3等！感謝の気持ちを込めて！";
+        } else if (rand < 150) {
+          prize = "4等！それなりに";
+        } else {
+          prize = "残念！はずれ～";
         }
 
         resultDiv.textContent = prize;
-        // cookieに保存
         setCookie('lottery_result', prize);
         setCookie('lottery_rand', rand);
       }
     });
 
-    // 交換処理と閉じるボタン表示
+    // 交換処理
     exchangeBtn.addEventListener('click', () => {
       resultDiv.textContent = "✅ 景品を交換しました！";
       exchangeBtn.disabled = true;
-
-      const closeBtn = document.createElement('button');
-      closeBtn.textContent = 'サイトを閉じる';
-      closeBtn.className = 'btn';
-      closeBtn.onclick = () => {
-        window.open('', '_self');
-        window.close();
-        setTimeout(() => {
-          window.location.href = 'http://abehiroshi.la.coocan.jp'; // 任意のリダイレクト先
-        }, 3000);
-      };
-      closeContainer.appendChild(closeBtn);
+      setCookie('exchanged', 'true');
+      createCloseButton();
     });
   </script>
-</body>
-</html>
