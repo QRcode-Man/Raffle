@@ -117,6 +117,10 @@
           prize = "残念！はずれ～";
         }
 
+
+https://github.com/user-attachments/assets/17a1bf10-914e-4d61-acc5-c520f56093d4
+
+
         resultDiv.textContent = prize;
         setCookie('lottery_result', prize);
         setCookie('lottery_rand', rand);
