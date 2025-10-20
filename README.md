@@ -50,6 +50,18 @@
   </div>
 
   <script>
+  function playVideo(src) {
+  const video = document.createElement('video');
+  video.src = src;
+  video.width = 560;
+  video.height = 315;
+  video.autoplay = true;
+  video.controls = true; // 任意：ユーザーが操作できるようにする
+  closeContainer.innerHTML = ''; // 前の要素をクリア（必要に応じて）
+  closeContainer.appendChild(video);
+}
+
+    
     const resultDiv = document.getElementById('result');
     const randDiv = document.getElementById('rand');
     const exchangeBtn = document.getElementById('exchangeBtn');
@@ -105,22 +117,23 @@
         randDiv.textContent = `乱数: ${rand.toFixed(2)}`;
 
         let prize;
-        if (rand < 10) {
-          <video width="560" height="315" src="1等.mp4" autoplay></video>
-          prize = "🎉 1等！おめでとう！";
-        } else if (rand < 40) {
-          <video width="560" height="315" src="2等.mp4" autoplay></video>
-          prize = "✨ 2等！すばらしい！";
-        } else if (rand < 80) {
-          <video width="560" height="315" src="3等.mp4" autoplay></video>
-          prize = "🎁 3等！感謝の気持ちを込めて！";
-        } else if (rand < 150) {
-          <video width="560" height="315" src="4等.mp4" autoplay></video>
-          prize = "4等！それなりに";
-        } else {
-          <video width="560" height="315" src="はずれ.mp4" autoplay></video>
-          prize = "残念！はずれ～";
-        }
+if (rand < 10) {
+  playVideo("1等.mp4");
+  prize = "🎉 1等！おめでとう！";
+} else if (rand < 40) {
+  playVideo("2等.mp4");
+  prize = "✨ 2等！すばらしい！";
+} else if (rand < 80) {
+  playVideo("3等.mp4");
+  prize = "🎁 3等！感謝の気持ちを込めて！";
+} else if (rand < 150) {
+  playVideo("4等.mp4");
+  prize = "4等！それなりに";
+} else {
+  playVideo("はずれ.mp4");
+  prize = "残念！はずれ～";
+}
+
 
         resultDiv.textContent = prize;
         setCookie('lottery_result', prize);
