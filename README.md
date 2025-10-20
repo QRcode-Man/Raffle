@@ -44,24 +44,22 @@
   <div class="container">
     <div class="title">抽選結果はこちら！</div>
     <div class="result" id="result">...</div>
-    <div class="rand" id="rand">乱数: --</div>
     <button class="btn" id="exchangeBtn">交換する</button>
     <div id="closeContainer"></div>
   </div>
 
   <script>
-  function playVideo(src) {
-  const video = document.createElement('video');
-  video.src = src;
-  video.width = 560;
-  video.height = 315;
-  video.autoplay = true;
-  video.controls = true; // 任意：ユーザーが操作できるようにする
-  closeContainer.innerHTML = ''; // 前の要素をクリア（必要に応じて）
-  closeContainer.appendChild(video);
-}
+    function playVideo(src) {
+      const video = document.createElement('video');
+      video.src = src;
+      video.width = 560;
+      video.height = 315;
+      video.autoplay = true;
+      video.controls = true;
+      closeContainer.innerHTML = ''; // 前の要素をクリア
+      closeContainer.appendChild(video);
+    }
 
-    
     const resultDiv = document.getElementById('result');
     const randDiv = document.getElementById('rand');
     const exchangeBtn = document.getElementById('exchangeBtn');
@@ -70,7 +68,7 @@
     // Cookieを設定する関数（有効期限1日）
     function setCookie(name, value, days = 1) {
       const date = new Date();
-      date.setTime(date.getTime() + (days*24*60*60*1000));
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
       document.cookie = `${name}=${encodeURIComponent(value)};expires=${date.toUTCString()};path=/`;
     }
 
@@ -86,7 +84,7 @@
       closeBtn.textContent = '3秒後に自動で閉じます（またはクリック）';
       closeBtn.className = 'btn';
       closeBtn.onclick = () => {
-        window.location.href = 'http://abehiroshi.la.coocan.jp'; // 任意のリダイレクト先
+        window.location.href = 'http://abehiroshi.la.coocan.jp';
       };
       closeContainer.appendChild(closeBtn);
 
@@ -101,10 +99,22 @@
       const storedRand = getCookie('lottery_rand');
       const exchanged = getCookie('exchanged');
 
-      // 抽選結果がすでに存在する場合
       if (storedResult && storedRand) {
         resultDiv.textContent = storedResult;
         randDiv.textContent = `乱数: ${parseFloat(storedRand).toFixed(2)}`;
+
+        // ★ 再読み込み時に動画を再生
+        if (storedResult.includes("1等")) {
+          playVideo("1等.mp4");
+        } else if (storedResult.includes("2等")) {
+          playVideo("2等.mp4");
+        } else if (storedResult.includes("3等")) {
+          playVideo("3等.mp4");
+        } else if (storedResult.includes("4等")) {
+          playVideo("4等.mp4");
+        } else if (storedResult.includes("はずれ")) {
+          playVideo("はずれ.mp4");
+        }
 
         if (exchanged === 'true') {
           resultDiv.textContent = "✅ 景品を交換しました！";
@@ -117,23 +127,22 @@
         randDiv.textContent = `乱数: ${rand.toFixed(2)}`;
 
         let prize;
-if (rand < 10) {
-  playVideo("1等.mp4");
-  prize = "🎉 1等！おめでとう！";
-} else if (rand < 40) {
-  playVideo("2等.mp4");
-  prize = "✨ 2等！すばらしい！";
-} else if (rand < 80) {
-  playVideo("3等.mp4");
-  prize = "🎁 3等！感謝の気持ちを込めて！";
-} else if (rand < 150) {
-  playVideo("4等.mp4");
-  prize = "4等！それなりに";
-} else {
-  playVideo("はずれ.mp4");
-  prize = "残念！はずれ～";
-}
-
+        if (rand < 10) {
+          playVideo("1等.mp4");
+          prize = "🎉 1等！おめでとう！";
+        } else if (rand < 40) {
+          playVideo("2等.mp4");
+          prize = "✨ 2等！すばらしい！";
+        } else if (rand < 80) {
+          playVideo("3等.mp4");
+          prize = "🎁 3等！感謝の気持ちを込めて！";
+        } else if (rand < 150) {
+          playVideo("4等.mp4");
+          prize = "4等！それなりに";
+        } else {
+          playVideo("はずれ.mp4");
+          prize = "残念！はずれ～";
+        }
 
         resultDiv.textContent = prize;
         setCookie('lottery_result', prize);
@@ -149,3 +158,5 @@ if (rand < 10) {
       createCloseButton();
     });
   </script>
+</body>
+</html>
