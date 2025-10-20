@@ -112,34 +112,20 @@ https://github.com/user-attachments/assets/e1056d0b-29c2-4441-9b54-8acc88a43e06
 
         let prize;
         if (rand < 10) {
+          <video src="https://github.com/user-attachments/assets/ee907ea9-5f50-44fd-beba-733ef3682942" autoplay></video>
           
-
-    Uploading 1等.mp4…
-
-prize = "🎉 1等！おめでとう！";
+          prize = "🎉 1等！おめでとう！";
         } else if (rand < 40) {
+          <video src="https://github.com/user-attachments/assets/60a5991b-83f6-42cd-9317-a5007cbe0d4b" autoplay></video>
           prize = "✨ 2等！すばらしい！";
-
-https://github.com/user-attachments/assets/60a5991b-83f6-42cd-9317-a5007cbe0d4b
-
-
-        } else if (rand < 80) {
-
-https://github.com/user-attachments/assets/344af27a-7ff4-414b-8493-bbe035f5b947
-
-
+} else if (rand < 80) {
+          <video src="https://github.com/user-attachments/assets/344af27a-7ff4-414b-8493-bbe035f5b947" autoplay></video>
           prize = "🎁 3等！感謝の気持ちを込めて！";
         } else if (rand < 150) {
-
-https://github.com/user-attachments/assets/d85fc8c9-8472-4a67-b82e-626f7c1b2393
-
-
+          <video src="https://github.com/user-attachments/assets/d85fc8c9-8472-4a67-b82e-626f7c1b2393" autoplay></video>
           prize = "4等！それなりに";
         } else {
-
-https://github.com/user-attachments/assets/ec32af33-1ef9-4a4d-b1ca-33815fa4aa8c
-
-
+          <video src="https://github.com/user-attachments/assets/ec32af33-1ef9-4a4d-b1ca-33815fa4aa8c" autoplay></video>
           prize = "残念！はずれ～";
         }
 
