@@ -1,9 +1,3 @@
-https://github.com/user-attachments/assets/ee907ea9-5f50-44fd-beba-733ef3682942
-https://github.com/user-attachments/assets/fb35cd47-d2dd-425f-a756-7dbd82bebce1
-https://github.com/user-attachments/assets/7db83d51-117b-48bc-a8cb-5bfc451852f4
-https://github.com/user-attachments/assets/3c46d8b3-2002-471b-b8c1-8ceaee0e830d
-https://github.com/user-attachments/assets/e1056d0b-29c2-4441-9b54-8acc88a43e06
-
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -112,19 +106,19 @@ https://github.com/user-attachments/assets/e1056d0b-29c2-4441-9b54-8acc88a43e06
 
         let prize;
         if (rand < 10) {
-          <iframe width="560" height="315" src="https://github.com/user-attachments/assets/ee907ea9-5f50-44fd-beba-733ef3682942" autoplay></iframe>
+          <video width="560" height="315" src="1等.mp4" autoplay></video>
           prize = "🎉 1等！おめでとう！";
         } else if (rand < 40) {
-          <iframe width="560" height="315" src="https://github.com/user-attachments/assets/60a5991b-83f6-42cd-9317-a5007cbe0d4b" autoplay></iframe>
+          <video width="560" height="315" src="2等.mp4" autoplay></video>
           prize = "✨ 2等！すばらしい！";
         } else if (rand < 80) {
-          <iframe width="560" height="315" src="https://github.com/user-attachments/assets/344af27a-7ff4-414b-8493-bbe035f5b947" autoplay></iframe>
+          <video width="560" height="315" src="3等.mp4" autoplay></video>
           prize = "🎁 3等！感謝の気持ちを込めて！";
         } else if (rand < 150) {
-          <iframe width="560" height="315" src="https://github.com/user-attachments/assets/d85fc8c9-8472-4a67-b82e-626f7c1b2393" autoplay></iframe>
+          <video width="560" height="315" src="4等.mp4" autoplay></video>
           prize = "4等！それなりに";
         } else {
-          <iframe width="560" height="315" src="https://github.com/user-attachments/assets/ec32af33-1ef9-4a4d-b1ca-33815fa4aa8c" autoplay></iframe>
+          <video width="560" height="315" src="はずれ.mp4" autoplay></video>
           prize = "残念！はずれ～";
         }
 
