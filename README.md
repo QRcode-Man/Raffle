@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/b582eab2-8160-4f3c-870f-9ca170e7b2a6
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -114,26 +112,26 @@ https://github.com/user-attachments/assets/b582eab2-8160-4f3c-870f-9ca170e7b2a6
 
 prize = "🎉 1等！おめでとう！";
         } else if (rand < 40) {
-
-https://github.com/user-attachments/assets/f96defe4-021e-43de-9154-1b831681ba46
-
-
           prize = "✨ 2等！すばらしい！";
+
+https://github.com/user-attachments/assets/60a5991b-83f6-42cd-9317-a5007cbe0d4b
+
+
         } else if (rand < 80) {
+
+https://github.com/user-attachments/assets/344af27a-7ff4-414b-8493-bbe035f5b947
+
+
           prize = "🎁 3等！感謝の気持ちを込めて！";
-
-https://github.com/user-attachments/assets/1a8f43e9-39f8-49c0-b330-9f8da256b402
-
-
         } else if (rand < 150) {
+
+https://github.com/user-attachments/assets/d85fc8c9-8472-4a67-b82e-626f7c1b2393
+
+
           prize = "4等！それなりに";
-
-https://github.com/user-attachments/assets/b2edbcea-7bd7-4891-bf1b-839ef35f20c8
-
-
         } else {
 
-https://github.com/user-attachments/assets/8fbe814a-46ba-47de-8796-2d00db35457c
+https://github.com/user-attachments/assets/ec32af33-1ef9-4a4d-b1ca-33815fa4aa8c
 
 
           prize = "残念！はずれ～";
